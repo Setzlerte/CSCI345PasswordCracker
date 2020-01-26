@@ -9,7 +9,7 @@ rule5 = ''
 
 
 def main():
-	list(exrex.generate(rule1)
+	list(exrex.generate(rule1))
 
 
 
