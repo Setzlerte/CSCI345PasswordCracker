@@ -11,7 +11,7 @@ rule5 = ''
 def main():
 	list(exrex.generate(rule1))
 
-
+	print("lkajsdfl")
 
 
 
