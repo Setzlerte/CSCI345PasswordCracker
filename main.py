@@ -1,5 +1,15 @@
 import hashlib
 
+def main():
+	wordlist = openWordList()
+	print("lkajsdfl")
+	l1 =["taco","blue","yess"]
+	l2 = secondRuleWord("*~!#", l1)
+	print(l2)
+	flist = firstRuleWord(wordlist)
+	for word in flist:
+		print(word)
+
 def openWordList():
 	wl = open('/usr/share/dict/words', 'r')
 	wordlist = wl.readlines()
@@ -7,8 +17,10 @@ def openWordList():
 	for i in range(len(wordlist)):
 		wordlist[i] = wordlist[i].decode('utf-8')
 		wordlist[i] = wordlist[i].replace('\r', '').replace('\n', '')
+		wordlist[i] = wordlist[i].title()
 		#print(len(wordlist[i]))
 	return wordlist
+
 """
 input: a string(word) to be hashed
 output: the sha256 hexidecimal hash of word  
@@ -33,9 +45,6 @@ def firstRuleWord(wordlist):
 	return newlist
 			
 
-
-
-
 """
 input:	specialchars: a string of all the special chars added to a word
 	wordlist: a list of 4 letters of words to append to each special character
@@ -51,17 +60,6 @@ def secondRuleWord(specialChars, wordlist):
 	# end word loop	
 	return newlist
 	
-
-def main():
-	wordlist = openWordList()
-	print("lkajsdfl")
-	l1 =["taco","blue","yess"]
-	l2 = secondRuleWord("*~!#", l1)
-	print(l2)
-	flist = firstRuleWord(wordlist)
-	for word in flist:
-		print(word)
-
 
 
 main()
