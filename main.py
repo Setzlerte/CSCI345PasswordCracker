@@ -16,34 +16,27 @@ def openWordList():
 def hasher(word):
 	return hashlib.sha256(word).hexdigest()
 	
-
-def main():
-	wordlist = openWordList()
-	print("lkajsdfl")
-	hashed = hashlib.sha256()
-	print(hasher("taco"))
 	
 	
 """
 Input: a digit from 0-9, wordlist from /usr/share/dict/words
 Output: a list of seven letter words with the given special number appended at the end
 """
-def firstRuleWord(specialNum, wordlist):
+def firstRuleWord(wordlist):
 	newlist = []
-	for i in range(len(wordlist)):
-		#print(wordlist[i] + " " + str(len(wordlist[i])))
-		if(len(wordlist[i]) == 7):
-			newlist.append(wordlist[i] + str(specialNum))
+	for j in range(10):
+		for i in range(len(wordlist)):
+			#print(wordlist[i] + " " + str(len(wordlist[i])))
+			if(len(wordlist[i]) == 7):
+				newlist.append(wordlist[i] + str(j))
 	return newlist
 			
 
 def main():
 	wordlist = openWordList()
-	flist = firstRuleWord(1, wordlist)
+	flist = firstRuleWord(wordlist)
 	for word in flist:
 		print(word)
-
-
 
 
 
