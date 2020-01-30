@@ -2,12 +2,13 @@ import hashlib
 
 def main():
 	wordlist = openWordList()
-	print("lkajsdfl")
 	l1 =["taco","blue","yess"]
 	l2 = secondRuleWord("*~!#", l1)
-	print(l2)
+	#print(l2)
 	flist = firstRuleWord(wordlist)
-	for word in flist:
+	thirdlist = thirdRuleWord(wordlist)
+	fourthlist = fourthRuleWord()
+	for word in fourthlist:
 		print(word)
 
 def openWordList():
@@ -27,7 +28,6 @@ output: the sha256 hexidecimal hash of word
 """
 def hasher(word):
 	return hashlib.sha256(word).hexdigest()
-	
 	
 	
 
@@ -61,5 +61,17 @@ def secondRuleWord(specialChars, wordlist):
 	return newlist
 	
 
+def thirdRuleWord(wordlist):
+	newlist = []
+	for word in wordlist:
+		if(len(word) == 5 and 'a' in word and 'l' in word):
+			word = word.replace('a', '@').replace('l', '1')
+			newlist.append(word)
+	return newlist
 
+def fourthRuleWord():
+	newlist = []
+	for i in range(10000000):
+		newlist.append(str(i))
+	return newlist
 main()
