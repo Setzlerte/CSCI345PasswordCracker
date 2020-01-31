@@ -1,15 +1,15 @@
 import hashlib
 
 def main():
+	"""
 	wordlist = openWordList()
-	l1 =["taco","blue","yess"]
-	l2 = secondRuleWord("*~!#", l1)
-	#print(l2)
 	flist = firstRuleWord(wordlist)
 	thirdlist = thirdRuleWord(wordlist)
 	fourthlist = fourthRuleWord()
 	for word in fourthlist:
 		print(word)
+	"""
+	secondlist = secondRuleWord()
 
 def openWordList():
 	wl = open('/usr/share/dict/words', 'r')
@@ -46,18 +46,25 @@ def firstRuleWord(wordlist):
 			
 
 """
-input:	specialchars: a string of all the special chars added to a word
-	wordlist: a list of 4 letters of words to append to each special character
-output: the list of all the words with the special characters prepended
+output: list of a 5 digit string with special characters beginning in the front of the string
 """
-def secondRuleWord(specialChars, wordlist):
-
+def secondRuleWord():
+	allowed = ["*","~","#","!", "0", "1", "2", "3", "4", "5", "6", "7","8","9"]
 	newlist = []
-	for word in range(len(wordlist)):
-		for char in specialChars:
-			newlist.append(str(wordlist[word]) + str(word))
-		# end character loop
-	# end word loop	
+	for special in range(4):
+		#first digit 
+		for d2 in range(len(allowed)):
+			#second digit
+			for d3 in range(len(allowed)):
+				#third digit
+				for d4 in range(len(allowed)):
+					#fourth digit
+					for d5 in range(len(allowed)):
+						#last digit
+						newlist.append(allowed[special] + allowed[d2] + allowed[d3] + allowed[d4] + allowed[d5])
+						
+	# end special loop
+	print(newlist)	
 	return newlist
 	
 
