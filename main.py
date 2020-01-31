@@ -49,22 +49,57 @@ def firstRuleWord(wordlist):
 output: list of a 5 digit string with special characters beginning in the front of the string
 """
 def secondRuleWord():
-	allowed = ["*","~","#","!", "0", "1", "2", "3", "4", "5", "6", "7","8","9"]
+	#allowed = ["*","~","#","!", "0", "1", "2", "3", "4", "5", "6", "7","8","9"]
+	allowed = ["*","~","#","!","0"] #added 0 to account for passwords suc as #0001
 	newlist = []
-	for special in range(4):
-		#first digit 
-		for d2 in range(len(allowed)):
-			#second digit
-			for d3 in range(len(allowed)):
-				#third digit
-				for d4 in range(len(allowed)):
-					#fourth digit
-					for d5 in range(len(allowed)):
-						#last digit
-						newlist.append(allowed[special] + allowed[d2] + allowed[d3] + allowed[d4] + allowed[d5])
+	
+	for i in range(10000):
+		val = str(i)
+		if (len(val) == 4):
+			for j in range(4): # dont prepend 0s
+				newlist.append(allowed[j] + str(i))
+			#end for
+		elif (len(val) == 3):
+			for j in range(4):
+				d1 = allowed[j]  #first digit
+				for k in range(5): 
+					#second digit
+					newlist.append(d1 + allowed[k] + val) 
+		elif (len(val) == 2):
+			for j in range(4):
+				d1 = allowed[j] #first digit
+				for k in range(5):
+					#second digit
+					d2 = allowed[k]
+					for l in range(5):
+						#third digit
+						if (k < 4):#dont add special characters after a 0
+							newlist.append(d1 + d2 + allowed[l] + val)
+						else:
+							newlist.append(d1 + d2 + allowed[4] + val)
+							break 
 						
-	# end special loop
-	print(newlist)	
+		
+		else:
+			for j in range(4):
+				d1 = allowed[j] #first digit
+				for k in range(5):
+					d2 = allowed[k] # second digit
+					for l in range(5): #third digit
+						if (k < 4): #dont add special characters after a 0
+							d3 = allowed[l]
+						else:
+							d3 = allowed[4]
+						for m in range(5):#fourth digit
+							if (k < 4 and l < 4):#dont add special characters after a 0
+								newlist.append(d1 + d2 + d3 + allowed[m] + val)
+							else:
+								newlist.append(d1 + d2 + d3 + allowed[4] + val)
+								break 
+			
+			
+
+	#print(newlist)	
 	return newlist
 	
 
