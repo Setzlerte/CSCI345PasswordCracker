@@ -175,50 +175,21 @@ def crackingMachine(passwords2Crack, rule1, rule2, rule3, rule4, rule5):
 	for i in range(len(passwords2Crack)):
 		cracked, pwd = brute(rule1,passwords2Crack[i])
 		if(cracked == False):	
-			print("not r1")
+			#print("not r1")
 			cracked, pwd = brute(rule2,passwords2Crack[i])
 		if(cracked == False):
-			print("not r2")
+			#print("not r2")
 			cracked, pwd = brute(rule3,passwords2Crack[i])
 		if(cracked == False):	
-			print("not r3")
+			#print("not r3")
 			cracked, pwd = brute(rule4,passwords2Crack[i])
 		if(cracked == False):	
-			print("not r4")
+			#print("not r4")
 			cracked, pwd = brute(rule5,passwords2Crack[i])
 		pwdCracked.append(pwd)
 		print(pwd)
-	return pwdCracker
-		"""
-		while(cracked = False):
-			crack = passwords2Crack[i]
-			pw = ""
-			for j in range(len(rule1)):
-				if(crack == hasher(rule1[j])):
-					cracked = True
-					pw = rule1[j]
-					break
-			for j in range(len(rule1)):
-				if(crack == hasher(rule2[j])):
-					Cracked = True
-					pw = rule2[j]
-					break
-			for j in range(len(rule1)):
-				if(crack == hasher(rule3[j])):
-					Cracked = True
-					pw = rule3[j]
-					break
-			for j in range(len(rule1)):
-				if(crack == hasher(rule4[j])):
-					Cracked = True
-					pw = rule4[j]
-					break
-			for j in range(len(rule1)):
-				if(crack == hasher(rule5[j])):
-					Cracked = True
-					pw = rule5[j]
-					break
-			"""
+	return pwdCracked
+		
 
 #end crackingMachine
 
