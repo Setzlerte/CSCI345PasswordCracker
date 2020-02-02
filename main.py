@@ -8,12 +8,16 @@ def main():
 	fourthlist = fourthRuleWord()
 	fifthlist = fifthRuleWord(wordlist)
 	print("lists done")
-	pwd2Crack = loginParser("testPasswords.txt")
+	usernames, pwd2Crack = loginParser("testPasswords.txt")
+	#print(usernames)
+	#print(pwd2Crack)
 	print("beginning cracking")
 	crackedPWDs = crackingMachine(pwd2Crack, firstlist, secondlist, thirdlist, fourthlist, fifthlist)
+	print(crackedPWDs)
 
 def openWordList():
-	wl = open('/usr/share/dict/words', 'r')
+	#wl = open('/usr/share/dict/words', 'r')
+	wl = open('words.txt', 'r')
 	wordlist = wl.readlines()
 	wl.close()
 	for i in range(len(wordlist)):
@@ -127,14 +131,14 @@ def brute(wordList, hash2Crack):
 	"""
 	cracked = False
 	for i in range(len(wordList)):
-		print(wordList[i])
+		#print(wordList[i])
 		if((hasher(wordList[i]) == hash2Crack)):
 			cracked = True
 			break
 	if (cracked == True):
 		return True, wordList[i]
 	else:
-		return False, ""
+		return False, "nope"
 
 def loginParser(fileName):
 	"""
@@ -151,10 +155,10 @@ def loginParser(fileName):
 		for char in line: 
 			if (str(char) == ":"): #stops at colons, username will be first, then gets the password and stops
 				if (found == False):
-					userFound = True
+					found = True
 					usernames.append(temp)
 					temp = ""
-				if (found == True):
+				elif ((found == True) and str(char) == ":"):
 					break
 			else:
 				temp += str(char)
@@ -183,8 +187,8 @@ def crackingMachine(passwords2Crack, rule1, rule2, rule3, rule4, rule5):
 			print("not r4")
 			cracked, pwd = brute(rule5,passwords2Crack[i])
 		pwdCracked.append(pwd)
-		
-
+		print(pwd)
+	return pwdCracker
 		"""
 		while(cracked = False):
 			crack = passwords2Crack[i]
