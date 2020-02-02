@@ -46,7 +46,6 @@ def firstRuleWord(wordlist):
 output: list of a 5 digit string with special characters beginning in the front of the string
 """
 def secondRuleWord():
-	#allowed = ["*","~","#","!", "0", "1", "2", "3", "4", "5", "6", "7","8","9"]
 	allowed = ["*","~","#","!","0"] #added 0 to account for passwords suc as #0001
 	newlist = []
 	
@@ -133,6 +132,10 @@ def brute(wordList, hash2Crack):
 		return False
 
 def loginParser(fileName):
+	"""
+	Input: name of the file to parse for usernames and hashed passwords
+	output: a list of usernames and passwords to crack.  Each usernames corresponds to the password in the same position in the other array
+	"""
 	passwordFile = open(fileName, 'r')
 	passwords2Crack = []
 	usernames = []
@@ -152,6 +155,8 @@ def loginParser(fileName):
 				temp += str(line[char])
 		passwords2Crack[i] = temp
 		i++
+	#end for
+	return usernames, passwords2Crack
 			
 
 #end loginParser
