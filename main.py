@@ -130,6 +130,7 @@ def brute(wordList, hash2Crack):
 		return True, wordList[i]
 	else:
 		return False
+
 def loginParser(fileName):
 	passwordFile = open(fileName, 'r')
 	passwords2Crack = []
