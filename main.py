@@ -1,15 +1,14 @@
 import hashlib
 
 def main():
-	"""
 	wordlist = openWordList()
 	flist = firstRuleWord(wordlist)
+	secondlist = secondRuleWord()
 	thirdlist = thirdRuleWord(wordlist)
 	fourthlist = fourthRuleWord()
-	for word in fourthlist:
-		print(word)
-	"""
-	secondlist = secondRuleWord()
+	
+	
+	
 
 def openWordList():
 	wl = open('/usr/share/dict/words', 'r')
@@ -99,7 +98,6 @@ def secondRuleWord():
 			
 			
 
-	#print(newlist)	
 	return newlist
 	
 
@@ -116,4 +114,44 @@ def fourthRuleWord():
 	for i in range(10000000):
 		newlist.append(str(i))
 	return newlist
+
+def brute(wordList, hash2Crack):
+	"""
+	Input:	wordList: the list of words to hash and compare against the hash2Crack
+		hash2Crack: hashed value word list is being compared to
+	Output: whether the hash was cracked, and if it was, the value of the cracked hash
+	"""
+	cracked = False
+	for i in range(len(wordList)):
+		if((hasher(wordlist[i]) == hash2Crack)):
+			cracked = True
+			break
+	if (cracked == True):
+		return True, wordList[i]
+	else:
+		return False
+def loginParser(fileName):
+	passwordFile = open(fileName, 'r')
+	passwords2Crack = []
+	usernames = []
+	i = 0
+	for line in passwordFile:
+		userFound = False #tracks if the username has been seperated out
+		temp = "" #variable for storing strings
+		for char in line: 
+			if (str(line[char]) == ":"): #stops at colons, username will be first, then gets the password and stops
+				if (found == False):
+					userFound = True
+					usernames[i] = temp
+					temp = ""
+				if (found == True):
+					break
+			else:
+				temp += str(line[char])
+		passwords2Crack[i] = temp
+		i++
+			
+
+#end loginParser
+
 main()
