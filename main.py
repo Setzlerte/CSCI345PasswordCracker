@@ -6,9 +6,7 @@ def main():
 	secondlist = secondRuleWord()
 	thirdlist = thirdRuleWord(wordlist)
 	fourthlist = fourthRuleWord()
-	
-	
-	
+	fifthlist = fifthRuleWord(wordlist)
 
 def openWordList():
 	wl = open('/usr/share/dict/words', 'r')
@@ -114,6 +112,9 @@ def fourthRuleWord():
 	for i in range(10000000):
 		newlist.append(str(i))
 	return newlist
+	
+def fifthRuleWord(wordlist):
+	return openWordList()
 
 def brute(wordList, hash2Crack):
 	"""
