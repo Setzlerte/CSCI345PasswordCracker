@@ -2,11 +2,15 @@ import hashlib
 
 def main():
 	wordlist = openWordList()
-	flist = firstRuleWord(wordlist)
+	firstlist = firstRuleWord(wordlist)
 	secondlist = secondRuleWord()
 	thirdlist = thirdRuleWord(wordlist)
 	fourthlist = fourthRuleWord()
 	fifthlist = fifthRuleWord(wordlist)
+	print("lists done")
+	pwd2Crack = loginParser("testPasswords.txt")
+	print("beginning cracking")
+	crackedPWDs = crackingMachine(pwd2Crack, firstlist, secondlist, thirdlist, fourthlist, fifthlist)
 
 def openWordList():
 	wl = open('/usr/share/dict/words', 'r')
@@ -123,13 +127,14 @@ def brute(wordList, hash2Crack):
 	"""
 	cracked = False
 	for i in range(len(wordList)):
-		if((hasher(wordlist[i]) == hash2Crack)):
+		print(wordList[i])
+		if((hasher(wordList[i]) == hash2Crack)):
 			cracked = True
 			break
 	if (cracked == True):
 		return True, wordList[i]
 	else:
-		return False
+		return False, ""
 
 def loginParser(fileName):
 	"""
@@ -141,24 +146,76 @@ def loginParser(fileName):
 	usernames = []
 	i = 0
 	for line in passwordFile:
-		userFound = False #tracks if the username has been seperated out
+		found = False #tracks if the username has been seperated out
 		temp = "" #variable for storing strings
 		for char in line: 
-			if (str(line[char]) == ":"): #stops at colons, username will be first, then gets the password and stops
+			if (str(char) == ":"): #stops at colons, username will be first, then gets the password and stops
 				if (found == False):
 					userFound = True
-					usernames[i] = temp
+					usernames.append(temp)
 					temp = ""
 				if (found == True):
 					break
 			else:
-				temp += str(line[char])
-		passwords2Crack[i] = temp
-		i++
+				temp += str(char)
+		passwords2Crack.append(temp)
+		i += 1
 	#end for
 	return usernames, passwords2Crack
 			
 
 #end loginParser
+
+def crackingMachine(passwords2Crack, rule1, rule2, rule3, rule4, rule5):
+	pwdCracked = []
+	for i in range(len(passwords2Crack)):
+		cracked, pwd = brute(rule1,passwords2Crack[i])
+		if(cracked == False):	
+			print("not r1")
+			cracked, pwd = brute(rule2,passwords2Crack[i])
+		if(cracked == False):
+			print("not r2")
+			cracked, pwd = brute(rule3,passwords2Crack[i])
+		if(cracked == False):	
+			print("not r3")
+			cracked, pwd = brute(rule4,passwords2Crack[i])
+		if(cracked == False):	
+			print("not r4")
+			cracked, pwd = brute(rule5,passwords2Crack[i])
+		pwdCracked.append(pwd)
+		
+
+		"""
+		while(cracked = False):
+			crack = passwords2Crack[i]
+			pw = ""
+			for j in range(len(rule1)):
+				if(crack == hasher(rule1[j])):
+					cracked = True
+					pw = rule1[j]
+					break
+			for j in range(len(rule1)):
+				if(crack == hasher(rule2[j])):
+					Cracked = True
+					pw = rule2[j]
+					break
+			for j in range(len(rule1)):
+				if(crack == hasher(rule3[j])):
+					Cracked = True
+					pw = rule3[j]
+					break
+			for j in range(len(rule1)):
+				if(crack == hasher(rule4[j])):
+					Cracked = True
+					pw = rule4[j]
+					break
+			for j in range(len(rule1)):
+				if(crack == hasher(rule5[j])):
+					Cracked = True
+					pw = rule5[j]
+					break
+			"""
+
+#end crackingMachine
 
 main()
