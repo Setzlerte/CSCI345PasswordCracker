@@ -130,6 +130,10 @@ def thirdRuleWord(wordlist):
 def fourthRuleWord():
 	newlist = []
 	for i in range(10000000):
+		if(len(str(i)) < 7):
+			word = str(i)
+			word = ("0" * (7 - len(word))) + word
+			newlist.append(word)
 		newlist.append(str(i))
 	return newlist
 	
