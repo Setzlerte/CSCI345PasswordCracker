@@ -1,6 +1,7 @@
 import hashlib
 
 def main():
+	
 	wordlist = openWordList()
 	firstlist = firstRuleWord(wordlist)
 	secondlist = secondRuleWord()
@@ -14,6 +15,13 @@ def main():
 	print("beginning cracking")
 	crackedPWDs = crackingMachine(pwd2Crack, firstlist, secondlist, thirdlist, fourthlist, fifthlist)
 	print(crackedPWDs)
+	"""
+	print("Accrual6:" + hasher("Accrual6"))
+	print("#!001:" + hasher("#!001"))
+	print("1@be1:" + hasher("1@be1"))
+	print("12:" + hasher("12"))
+	print("labidophorous:" + hasher("labidophorous"))
+	"""
 
 def openWordList():
 	#wl = open('/usr/share/dict/words', 'r')
