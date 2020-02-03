@@ -10,7 +10,7 @@ def main():
 	print("lists done")
 	usernames, pwd2Crack = loginParser("testPasswords.txt")
 	#print(usernames)
-	#print(pwd2Crack)
+	print(pwd2Crack)
 	print("beginning cracking")
 	crackedPWDs = crackingMachine(pwd2Crack, firstlist, secondlist, thirdlist, fourthlist, fifthlist)
 	print(crackedPWDs)
@@ -32,7 +32,7 @@ input: a string(word) to be hashed
 output: the sha256 hexidecimal hash of word  
 """
 def hasher(word):
-	return hashlib.sha256(word).hexdigest()
+	return str(hashlib.sha256(word).hexdigest())
 	
 	
 
@@ -131,8 +131,8 @@ def brute(wordList, hash2Crack):
 	"""
 	cracked = False
 	for i in range(len(wordList)):
-		#print(wordList[i])
-		if((hasher(wordList[i]) == hash2Crack)):
+		#print(hasher(wordList[i]) + " " + hash2Crack)
+		if((str(hasher(wordList[i])) == str(hash2Crack))):
 			cracked = True
 			break
 	if (cracked == True):
@@ -153,7 +153,7 @@ def loginParser(fileName):
 		found = False #tracks if the username has been seperated out
 		temp = "" #variable for storing strings
 		for char in line: 
-			if (str(char) == ":"): #stops at colons, username will be first, then gets the password and stops
+			if (str(char) == ":" or str(char) =="\n"): #stops at colons, username will be first, then gets the password and stops
 				if (found == False):
 					found = True
 					usernames.append(temp)
