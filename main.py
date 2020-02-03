@@ -123,7 +123,7 @@ def thirdRuleWord(wordlist):
 	for word in wordlist:
 		if(len(word) == 5 and ('a' in word or 'l' in word)):
 			word = word.replace('a', '@').replace('l', '1')
-			print(word)
+			#print(word)
 			newlist.append(word)
 	return newlist
 
@@ -175,7 +175,8 @@ def loginParser(fileName):
 					break
 			else:
 				temp += str(char)
-		passwords2Crack.append(temp)
+		if (temp != ""):
+			passwords2Crack.append(temp)
 		i += 1
 	#end for
 	return usernames, passwords2Crack
