@@ -10,6 +10,8 @@ def main():
 	fifthlist = fifthRuleWord(wordlist)
 	print("lists done")
 	usernames, pwd2Crack = loginParser("testPasswords.txt")
+	print(usernames)
+	print(pwd2Crack)
 	#print(usernames)
 	print(pwd2Crack)
 	print("beginning cracking")
@@ -23,6 +25,7 @@ def main():
 	print("labidophorous:" + hasher("labidophorous"))
 	"""
 
+
 def openWordList():
 	#wl = open('/usr/share/dict/words', 'r')
 	wl = open('words.txt', 'r')
@@ -31,7 +34,7 @@ def openWordList():
 	for i in range(len(wordlist)):
 		wordlist[i] = wordlist[i].decode('utf-8')
 		wordlist[i] = wordlist[i].replace('\r', '').replace('\n', '')
-		wordlist[i] = wordlist[i].title()
+		#wordlist[i] = wordlist[i].title()
 		#print(len(wordlist[i]))
 	return wordlist
 
@@ -54,6 +57,7 @@ def firstRuleWord(wordlist):
 		for i in range(len(wordlist)):
 			#print(wordlist[i] + " " + str(len(wordlist[i])))
 			if(len(wordlist[i]) == 7):
+				wordlist[i] = wordlist[i].title()
 				newlist.append(wordlist[i] + str(j))
 	return newlist
 			
@@ -117,8 +121,9 @@ def secondRuleWord():
 def thirdRuleWord(wordlist):
 	newlist = []
 	for word in wordlist:
-		if(len(word) == 5 and 'a' in word and 'l' in word):
+		if(len(word) == 5 and ('a' in word or 'l' in word)):
 			word = word.replace('a', '@').replace('l', '1')
+			print(word)
 			newlist.append(word)
 	return newlist
 
